@@ -32,7 +32,7 @@ class SendForm:
     def date_of_birth(self, day: int, month: int, year: int):
         month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         element = self.driver.find_element(By.XPATH, '//*[@id="firstName"]')
-        element.send_keys(f'{day} {month_list[month]} {year}')
+        element.send_keys(f'{day} {month_list[month] - 1} {year}')
 
     def subjects(self, subjects):
         element = self.driver.find_element(By.XPATH, '//*[@id="subjectsInput"]')
@@ -42,8 +42,9 @@ class SendForm:
         element = self.driver.find_element(By.XPATH, f'//*[@id="hobbies-checkbox-{hobbies}"]')
         element.click()
 
-    def picture(self):
-        pass
+    def picture(self, picture_path: str):
+        element = self.driver.find_element(By.XPATH, '//*[@id="uploadPicture"]')
+        element.send_keys(picture_path)
 
     def current_address(self, current_address: str):
         element = self.driver.find_element(By.XPATH, '//*[@id="currentAddress"]')
