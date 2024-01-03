@@ -22,12 +22,8 @@ class SendForm:
         element.send_keys(email)
 
     def gender(self, gender: int):
-        gender_list = [
-            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-1"]'),
-            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-2"]'),
-            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-3"]')
-        ]
-        gender_list[gender].click()
+        element = self.driver.find_element(By.XPATH, f'//*[@id="gender-radio-{gender}"]')
+        element.click()
 
 
     def mobile(self, mobile: str):
@@ -42,12 +38,8 @@ class SendForm:
         element.send_keys(subjects)
 
     def hobbies(self, hobbies: int):
-        hobbies_list = [
-            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-1"]'),
-            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-2"]'),
-            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-3"]')
-        ]
-        hobbies_list[hobbies].click()
+        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbies-checkbox-{hobbies}"]')
+        element.click()
 
     def picture(self):
         pass
