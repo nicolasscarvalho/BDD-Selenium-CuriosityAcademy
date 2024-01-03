@@ -41,8 +41,13 @@ class SendForm:
         element = self.driver.find_element(By.XPATH, '//*[@id="subjectsInput"]')
         element.send_keys(subjects)
 
-    def hobbies(self):
-        pass
+    def hobbies(self, hobbies: int):
+        hobbies_list = [
+            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-1"]'),
+            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-2"]'),
+            self.driver.find_element(By.XPATH, '//*[@id="hobbies-checkbox-3"]')
+        ]
+        hobbies_list[hobbies].click()
 
     def picture(self):
         pass
