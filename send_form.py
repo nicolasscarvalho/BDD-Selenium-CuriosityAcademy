@@ -21,8 +21,14 @@ class SendForm:
         element = self.driver.find_element(By.XPATH, '//*[@id="userEmail"]')
         element.send_keys(email)
 
-    def gender(self):
-        pass
+    def gender(self, gender: int):
+        gender_list = [
+            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-1"]'),
+            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-2"]'),
+            self.driver.find_element(By.XPATH, '//*[@id="gender-radio-3"]')
+        ]
+        gender_list[gender].click()
+
 
     def mobile(self, mobile: str):
         element = self.driver.find_element(By.XPATH, '//*[@id="userNumber"]')
