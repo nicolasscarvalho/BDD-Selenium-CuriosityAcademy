@@ -1,6 +1,5 @@
 import unittest
 from send_form import SendForm
-from selenium import webdriver
 
 class TestCasesScript(unittest.TestCase):
 
