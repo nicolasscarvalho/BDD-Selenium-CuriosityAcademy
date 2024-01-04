@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from time import sleep
 
 class SendForm:
 
@@ -17,6 +16,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, '//*[@id="firstName"]')
         element.send_keys(name)
+        return True
 
     def last_name(self, last_name: str): # REQUIRED FIELD
         if last_name == '':
@@ -24,6 +24,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, '//*[@id="lastName"]')
         element.send_keys(last_name)
+        return True
 
     def email(self, email: str): # REQUIRED FIELD
         if email == '' or not(email.endswith('@gmail.com')):
@@ -31,6 +32,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, '//*[@id="userEmail"]')
         element.send_keys(email)
+        return True
 
     def gender(self, gender: int): # REQUIRED FIELD
         if gender < 1 or gender > 3:
@@ -38,6 +40,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, f'//*[@id="genterWrapper"]/div[2]/div[{gender}]')
         element.click()
+        return True
 
     def mobile(self, mobile: str): # REQUIRED FIELD
         if mobile == '' or len(mobile) > 10:
@@ -45,6 +48,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, '//*[@id="userNumber"]')
         element.send_keys(mobile)
+        return True
 
     def date_of_birth(self, day: int, month: int, year: int): # REQUIRED FIELD
         if day < 1 or month < 1 or year < 0 or day > 31 or month > 12:
@@ -53,6 +57,7 @@ class SendForm:
         month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
         element = self.driver.find_element(By.XPATH, '//*[@id="firstName"]')
         element.send_keys(f'{day} {month_list[month-1]} {year}')
+        return True
  
     def subjects(self, subjects):
         if subjects == '':
@@ -60,6 +65,7 @@ class SendForm:
          
         element = self.driver.find_element(By.XPATH, '//*[@id="subjectsInput"]')
         element.send_keys(subjects)
+        return True
 
     def hobbies(self, hobbies: int): # REQUIRED FIELD
         if hobbies not in [1,2,3]:
@@ -67,6 +73,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, f'//*[@id="hobbiesWrapper"]/div[2]/div[{hobbies}]')
         element.click()
+        return True
 
     def picture(self, picture_path: str):
         if picture_path == '':
@@ -74,6 +81,7 @@ class SendForm:
 
         element = self.driver.find_element(By.XPATH, '//*[@id="uploadPicture"]')
         element.send_keys(picture_path)
+        return True
 
     def current_address(self, current_address: str): # REQUIRED FIELD
         if current_address == '':
@@ -81,6 +89,7 @@ class SendForm:
         
         element = self.driver.find_element(By.XPATH, '//*[@id="currentAddress"]')
         element.send_keys(current_address)
+        return True
 
     def state_and_city(self):
         pass
@@ -93,3 +102,6 @@ class SendForm:
         
         if not confirmation.is_displayed():
             raise NoSuchElementException
+        
+        self.driver.close()
+        return True
