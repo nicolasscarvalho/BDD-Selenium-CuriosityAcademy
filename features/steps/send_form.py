@@ -1,9 +1,9 @@
 from behave import *
-from send_form import SendForm
+from send_form_methods import SendFormMethods
 
 @given(u'1 - selenium opens the form website')
 def step_impl(context):
-    context.form = SendForm()
+    context.form = SendFormMethods()
 
 
 @when(u'script fills in the data correctly')
@@ -27,7 +27,7 @@ def step_impl(context):
 
 @given(u'2 - selenium opens the form website')
 def step_impl(context):
-    context.form = SendForm()
+    context.form = SendFormMethods()
 
 
 @when(u'only the first name field is filled with an empty string')
@@ -51,7 +51,7 @@ def step_impl(context):
 
 @given(u'3 - selenium opens the form website')
 def step_impl(context):
-    context.form = SendForm()
+    context.form = SendFormMethods()
 
 
 @when(u'only the last name field is filled with an empty string')
@@ -75,7 +75,7 @@ def step_impl(context):
 
 @given(u'4 - selenium opens the form website')
 def step_impl(context):
-    context.form = SendForm()
+    context.form = SendFormMethods()
 
 
 @when(u'the email field is filled in without @gmail.com at the end')
@@ -100,7 +100,7 @@ def step_impl(context):
 
 @given(u'5 - selenium opens the form website')
 def step_impl(context):
-    context.form = SendForm()
+    context.form = SendFormMethods()
 
 
 @when(u'only the user image field is filled with an empty string')
