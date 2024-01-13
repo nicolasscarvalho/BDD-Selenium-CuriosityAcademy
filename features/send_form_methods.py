@@ -24,6 +24,7 @@ class SendFormMethods:
 
     def first_name(self, name: str): # REQUIRED FIELD
         if name == '':
+            print('Campo "first name" inválido')
             return False #return False #raise ValueError('Campo "first name" inválido')
         
         element = self.driver.find_element(By.XPATH, '//*[@id="firstName"]')
@@ -32,6 +33,7 @@ class SendFormMethods:
 
     def last_name(self, last_name: str): # REQUIRED FIELD
         if last_name == '':
+            print('Campo "last name" inválido')
             return False #raise ValueError('Campo "last name" inválido')
         
         element = self.driver.find_element(By.XPATH, '//*[@id="lastName"]')
@@ -40,6 +42,7 @@ class SendFormMethods:
 
     def email(self, email: str): # REQUIRED FIELD
         if email == '' or not(email.endswith('@gmail.com')):
+            print('Campo "email" inválido')
             return False #raise ValueError('Campo "email" inválido')
         
         element = self.driver.find_element(By.XPATH, '//*[@id="userEmail"]')
@@ -48,6 +51,7 @@ class SendFormMethods:
 
     def gender(self, gender: int): # REQUIRED FIELD
         if gender < 1 or gender > 3:
+            print('Campo "gender" inválido')
             return False #raise ValueError('Campo "gender" inválido')
         
         element = self.driver.find_element(By.XPATH, f'//*[@id="gender-radio-{gender}"]')
@@ -56,6 +60,7 @@ class SendFormMethods:
 
     def mobile(self, mobile: str): # REQUIRED FIELD
         if mobile == '' or len(mobile) > 10:
+            print('Campo "mobile" inválido')
             return False #raise ValueError('Campo "mobile" inválido')
         
         element = self.driver.find_element(By.XPATH, '//*[@id="userNumber"]')
@@ -64,6 +69,7 @@ class SendFormMethods:
 
     def date_of_birth(self, day: int, month: int, year: int): # REQUIRED FIELD
         if day < 1 or month < 1 or year < 0 or day > 31 or month > 12:
+            print('Campo "date of birth" inválido')
             return False #raise ValueError('Campo "date of birth" inválido')
 
         month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
@@ -74,6 +80,7 @@ class SendFormMethods:
  
     def subjects(self, subjects):
         if subjects == '':
+            print('Campo "subjects" inválido')
             return False #raise ValueError('Campo "subjects" inválido')
          
         element = self.driver.find_element(By.XPATH, '//*[@id="subjectsInput"]')
@@ -82,6 +89,7 @@ class SendFormMethods:
 
     def hobbies(self, hobbies: int): # REQUIRED FIELD
         if hobbies not in [1,2,3]:
+            print('Campo "hobbies" inválido')
             return False #raise ValueError('Campo "hobbies" inválido')
         
         element = self.driver.find_element(By.XPATH, f'//*[@id="hobbies-checkbox-{hobbies}"]')
@@ -90,6 +98,7 @@ class SendFormMethods:
 
     def picture(self, picture_path: str):
         if picture_path == '':
+            print('Campo "picture" inválido')
             return False #raise ValueError('Campo "picture" inválido')
 
         element = self.driver.find_element(By.XPATH, '//*[@id="uploadPicture"]')
@@ -98,6 +107,7 @@ class SendFormMethods:
 
     def current_address(self, current_address: str): # REQUIRED FIELD
         if current_address == '':
+            print('Campo "email" inválido')
             return False #raise ValueError('Campo "email" inválido')
         
         element = self.driver.find_element(By.XPATH, '//*[@id="currentAddress"]')
@@ -117,4 +127,5 @@ class SendFormMethods:
             return True
         except:
             self.driver.close()
+            print('Elemento não encontrado')
             return False #raise NoSuchElementException
