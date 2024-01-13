@@ -98,7 +98,7 @@ class SendFormMethods:
 
     def picture(self, picture_path: str):
         if picture_path == '':
-            print('Campo "picture" inválido')
+            print('Campo "picture" inválido') 
             return False #raise ValueError('Campo "picture" inválido')
 
         element = self.driver.find_element(By.XPATH, '//*[@id="uploadPicture"]')
