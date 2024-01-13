@@ -2,13 +2,25 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
+from time import sleep
 
 class SendFormMethods:
 
     def __init__(self):
         self.options = webdriver.ChromeOptions()
         self.driver = webdriver.Chrome(self.options)
+
         self.driver.get("https://demoqa.com/automation-practice-form")
+
+        self.driver.fullscreen_window()
+
+        self.driver.execute_script("document.body.style.zoom='50%'")
+
+        """
+        body = self.driver.find_element(By.TAG_NAME, 'body')
+        for i in range(0,5):
+            body.send_keys(Keys.CONTROL + '-')
+        """
 
     def first_name(self, name: str): # REQUIRED FIELD
         if name == '':
@@ -38,7 +50,7 @@ class SendFormMethods:
         if gender < 1 or gender > 3:
             return False #raise ValueError('Campo "gender" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="genterWrapper"]/div[2]/div[{gender}]')
+        element = self.driver.find_element(By.XPATH, f'//*[@id="gender-radio-{gender}"]')
         element.click()
         return True
 
@@ -72,7 +84,7 @@ class SendFormMethods:
         if hobbies not in [1,2,3]:
             return False #raise ValueError('Campo "hobbies" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbiesWrapper"]/div[2]/div[{hobbies}]')
+        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbies-checkbox-{hobbies}"]')
         element.click()
         return True
 
