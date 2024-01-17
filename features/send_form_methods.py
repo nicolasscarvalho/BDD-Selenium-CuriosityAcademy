@@ -12,9 +12,9 @@ class SendFormMethods:
 
         self.driver.get("https://demoqa.com/automation-practice-form")
 
-        self.driver.fullscreen_window()
+        #self.driver.fullscreen_window()
 
-        self.driver.execute_script("document.body.style.zoom='50%'")
+        #self.driver.execute_script("document.body.style.zoom='50%'")
 
         """
         body = self.driver.find_element(By.TAG_NAME, 'body')
@@ -54,7 +54,7 @@ class SendFormMethods:
             print('Campo "gender" inválido')
             return False #raise ValueError('Campo "gender" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="gender-radio-{gender}"]')
+        element = self.driver.find_element(By.XPATH, f'//*[@id="genterWrapper"]/div[2]/div[{gender}]/label')
         element.click()
         return True
 
@@ -92,7 +92,7 @@ class SendFormMethods:
             print('Campo "hobbies" inválido')
             return False #raise ValueError('Campo "hobbies" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbies-checkbox-{hobbies}"]')
+        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbiesWrapper"]/div[2]/div[{hobbies}]/label')
         element.click()
         return True
 
