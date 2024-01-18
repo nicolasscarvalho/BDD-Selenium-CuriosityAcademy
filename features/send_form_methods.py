@@ -27,7 +27,7 @@ class SendFormMethods:
             print('Campo "first name" inválido')
             return False #return False #raise ValueError('Campo "first name" inválido')
         
-        element = self.driver.find_element(By.XPATH, '//*[@id="firstName"]')
+        element = self.driver.find_element(By.ID, 'firstName')
         element.send_keys(name)
         return True
 
@@ -36,7 +36,7 @@ class SendFormMethods:
             print('Campo "last name" inválido')
             return False #raise ValueError('Campo "last name" inválido')
         
-        element = self.driver.find_element(By.XPATH, '//*[@id="lastName"]')
+        element = self.driver.find_element(By.ID, 'lastName')
         element.send_keys(last_name)
         return True
 
@@ -45,7 +45,7 @@ class SendFormMethods:
             print('Campo "email" inválido')
             return False #raise ValueError('Campo "email" inválido')
         
-        element = self.driver.find_element(By.XPATH, '//*[@id="userEmail"]')
+        element = self.driver.find_element(By.ID, 'userEmail')
         element.send_keys(email)
         return True
 
@@ -54,7 +54,7 @@ class SendFormMethods:
             print('Campo "gender" inválido')
             return False #raise ValueError('Campo "gender" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="genterWrapper"]/div[2]/div[{gender}]/label')
+        element = self.driver.find_element(By.CSS_SELECTOR, f'label[for="gender-radio-{gender}"]')
         element.click()
         return True
 
@@ -63,7 +63,7 @@ class SendFormMethods:
             print('Campo "mobile" inválido')
             return False #raise ValueError('Campo "mobile" inválido')
         
-        element = self.driver.find_element(By.XPATH, '//*[@id="userNumber"]')
+        element = self.driver.find_element(By.ID, 'userNumber')
         element.send_keys(mobile)
         return True
 
@@ -73,7 +73,7 @@ class SendFormMethods:
             return False #raise ValueError('Campo "date of birth" inválido')
 
         month_list = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        element = self.driver.find_element(By.XPATH, '//*[@id="dateOfBirthInput"]')
+        element = self.driver.find_element(By.ID, 'dateOfBirthInput')
         element.send_keys(f'{day} {month_list[month-1]} {year}', Keys.ENTER)
 
         return True
@@ -83,7 +83,7 @@ class SendFormMethods:
             print('Campo "subjects" inválido')
             return False #raise ValueError('Campo "subjects" inválido')
          
-        element = self.driver.find_element(By.XPATH, '//*[@id="subjectsInput"]')
+        element = self.driver.find_element(By.ID, 'subjectsInput')
         element.send_keys(subjects)
         return True
 
@@ -92,7 +92,7 @@ class SendFormMethods:
             print('Campo "hobbies" inválido')
             return False #raise ValueError('Campo "hobbies" inválido')
         
-        element = self.driver.find_element(By.XPATH, f'//*[@id="hobbiesWrapper"]/div[2]/div[{hobbies}]/label')
+        element = self.driver.find_element(By.CSS_SELECTOR, f'label[for="hobbies-checkbox-{hobbies}"]')
         element.click()
         return True
 
@@ -101,7 +101,7 @@ class SendFormMethods:
             print('Campo "picture" inválido') 
             return False #raise ValueError('Campo "picture" inválido')
 
-        element = self.driver.find_element(By.XPATH, '//*[@id="uploadPicture"]')
+        element = self.driver.find_element(By.ID, 'uploadPicture')
         element.send_keys(picture_path)
         return True
 
@@ -110,7 +110,7 @@ class SendFormMethods:
             print('Campo "email" inválido')
             return False #raise ValueError('Campo "email" inválido')
         
-        element = self.driver.find_element(By.XPATH, '//*[@id="currentAddress"]')
+        element = self.driver.find_element(By.ID, 'currentAddress')
         element.send_keys(current_address)
         return True
 
@@ -118,8 +118,7 @@ class SendFormMethods:
         pass
 
     def submit_and_close_website(self):
-        send_btn = self.driver.find_element(By.XPATH, '//*[@id="submit"]')
-        send_btn.click()
+        self.driver.find_element(By.ID, 'userForm').submit()
 
         try:
             confirmation = self.driver.find_element(By.XPATH, '/html/body/div[5]/div/div').is_displayed()
